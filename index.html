@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+    <html lang="en">
+     <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        my google map
+    </title>
+    <style>
+        #map{
+            height: 300px;
+            width:40%;
+        }
+    </style>
+    </head>
+    <body>
+        <h1>my google map</h1>
+    <div id="map"></div>
+
+    <script>
+    function initMap(){
+        var options = {         
+            center:{lat:36.7708, lng:5.0811},
+            zoom:10
+        }
+     map = new google.maps.Map(document.getElementById('map'),options);
+
+//marker
+/*
+        const marker=new google.maps.Marker({
+        position:{lat:36.7671,lng: 5.0828},
+        map:map
+    });
+    //info
+   
+    });
+   */
+        function addMarker(property){
+        const marker=new google.maps.Marker({
+        position:property.location,
+        map:map
+    });
+    // detail windiw
+    const detailWindow = new google.maps.InfoWindow({
+    content:property.content
+});
+    marker.addListener("mouseover",()=>{           
+        detailWindow.open(map,marker);
+    })
+
+        }
+        addMarker({location:{lat: 36.7688,lng: 5.0834}, 
+        content:'<h2>Le Parc de Gouraia</h2>'});
+        addMarker({location:{lat: 36.7692,lng: 5.0963},
+        content:'<h3>Pic des singes</h3>'});
+        addMarker({location:{lat: 36.7694,lng: 5.1020},
+        content:'<h2>Attractions touristiques Cap Carbon</h2>'});
+        addMarker({location:{lat: 36.7648,lng: 5.1029},
+        content:'<h3>Les Aiguades</h3>'});
+        addMarker({location:{lat: 36.7751,lng: 5.1021},
+        content:'<h4>La corniche de Yema Gouraia</h4>'});
+        addMarker({location:{lat: 36.6966,lng: 4.6021},
+        content:'<h4>Black lake Akfadou</h4>'});
+        addMarker({location:{lat: 36.5642,lng: 5.3061},
+        content:'<h4>Cascade de Darguina</h4>'});
+    }
+    
+    </script>
+    <script async
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAhXMlsUj4V7KeuHgePcv8QKQ4gUQiKlO0&callback=initMap">
+    </script>
+    </body>
+</html>
